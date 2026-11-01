@@ -20,12 +20,22 @@ class KtorClient {
             })
         }
 
+        install(ContentNegotiation) {
+            json(
+                Json {
+                    ignoreUnknownKeys = true
+                    isLenient = true
+                    coerceInputValues = true
+                }
+            )
+        }
+
         install(Logging) {
-            level = LogLevel.INFO
+            level = LogLevel.ALL
         }
     }
 
-    suspend inline fun <reified T> get(url: String): T? {
+    suspend inline fun <reified T> get(url: String ): T? {
         return try {
             val response = client.get(url)
             response.body<T>()
@@ -34,11 +44,6 @@ class KtorClient {
             e.printStackTrace()
             null
         }
-    }
-
-    // Overload para compatibilidad con llamadas que pasen Class<T>
-    suspend inline fun <reified T> get(url: String, responseType: Class<T>): T? {
-        return get<T>(url)
     }
 
     suspend inline fun <reified T> post(url: String, requestBody: Any): T? {
@@ -55,10 +60,6 @@ class KtorClient {
         }
     }
 
-    suspend inline fun <reified T> post(url: String, requestBody: Any, responseType: Class<T>): T? {
-        return post<T>(url, requestBody)
-    }
-
     suspend inline fun <reified T> put(url: String, requestBody: Any): T? {
         return try {
             val response = client.put(url) {
@@ -71,10 +72,6 @@ class KtorClient {
             e.printStackTrace()
             null
         }
-    }
-
-    suspend inline fun <reified T> put(url: String, requestBody: Any, responseType: Class<T>): T? {
-        return put<T>(url, requestBody)
     }
 
     suspend fun delete(url: String): Boolean {

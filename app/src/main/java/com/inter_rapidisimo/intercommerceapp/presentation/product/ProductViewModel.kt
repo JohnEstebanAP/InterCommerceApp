@@ -2,20 +2,17 @@ package com.inter_rapidisimo.intercommerceapp.presentation.product
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.inter_rapidisimo.intercommerceapp.application.KtorClient.KtorClient
-import com.inter_rapidisimo.intercommerceapp.data.source.remote.api.ApiRoutes
 import com.inter_rapidisimo.intercommerceapp.domain.product.Product
-import com.inter_rapidisimo.intercommerceapp.domain.product.ProductList
+import com.inter_rapidisimo.intercommerceapp.domain.repository.ProductRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
-import java.util.Locale
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 
 @HiltViewModel
 class ProductViewModel @Inject constructor(
-    private val ktorClient: KtorClient
+    private val repository: ProductRepository
 ) : ViewModel() {
     
     private val _products = MutableStateFlow<List<Product>>(emptyList())
@@ -26,11 +23,6 @@ class ProductViewModel @Inject constructor(
     
     private val _error = MutableStateFlow<String?>(null)
     val error: StateFlow<String?> = _error
-    private fun formatCopPrice(amountInUsdOrCop: Double): String {
-        val roundedInt = amountInUsdOrCop.toLong()
-        val formattedStr = String.format(Locale.US, "% ,d", roundedInt).replace(',', '.')
-        return "$formattedStr"
-    }
 
     fun fetchProducts(limit: Int = 10, skip: Int = 0) {
         viewModelScope.launch {
@@ -38,12 +30,11 @@ class ProductViewModel @Inject constructor(
             _error.value = null
             
             try {
-                val url = "${ApiRoutes.PRODUCTS_LIST}?limit=$limit&skip=$skip"
-                val productList = ktorClient.get<ProductList>(url)
-                
-                productList?.let {
-                    _products.value = it.products
-                } ?: run {
+                val products = repository.getProducts(limit,skip)
+
+                if (products.isNotEmpty()) {
+                    _products.value = products
+                } else {
                     _error.value = "No se pudieron cargar los productos"
                 }
             } catch (e: Exception) {

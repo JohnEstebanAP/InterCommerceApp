@@ -22,6 +22,7 @@ import com.inter_rapidisimo.intercommerceapp.presentation.home.widget.HomeCatego
 import com.inter_rapidisimo.intercommerceapp.presentation.product.ProductViewModel
 import com.inter_rapidisimo.intercommerceapp.presentation.home.widget.HomePromoBanner
 import com.inter_rapidisimo.intercommerceapp.presentation.home.widget.HomeHeaderSection
+import kotlin.random.Random
 
 @Composable
 fun HomeScreen(
@@ -33,7 +34,7 @@ fun HomeScreen(
         val error by viewModel.error.collectAsState()
 
         LaunchedEffect(Unit) {
-            viewModel.fetchProducts(limit = 10)
+            viewModel.fetchProducts(limit = 10, skip = Random.nextInt(0, 100))
         }
 
         HomeScreenContent(
