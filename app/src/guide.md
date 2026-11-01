@@ -105,3 +105,37 @@ Proyecto: InterCommerce App (Android Nativo)
    Coding Conventions) y la organización por paquetes orientada a características
    (package-by-feature).
  
+
+
+Tareas ya completadas del proyecto 
+1. ya se crearon 2 splahscreen adicional a otra pantalla cuando no se tiene conecion a internet
+2. se creo el home consumiendo las apis implementadas, permitiendo mostrar el skeleton de carga
+3. se implemento el cliente de red ktor 
+4. se crearon los modelos nesesarios.
+
+archivos creados
+C:\Users\john\AndroidStudioProjects\InterCommerceApp\app\src\main\java\com\inter_rapidisimo\intercommerceapp\application\KtorClient\KtorClient.kt.
+C:\Users\john\AndroidStudioProjects\InterCommerceApp\app\src\main\java\com\inter_rapidisimo\intercommerceapp\data\source\remote\api\ApiRoutes.kt
+C:\Users\john\AndroidStudioProjects\InterCommerceApp\app\src\main\java\com\inter_rapidisimo\intercommerceapp\di\AppModule.kt
+C:\Users\john\AndroidStudioProjects\InterCommerceApp\app\src\main\java\com\inter_rapidisimo\intercommerceapp\domain\product\Product.kt
+C:\Users\john\AndroidStudioProjects\InterCommerceApp\app\src\main\java\com\inter_rapidisimo\intercommerceapp\domain\product\ProductList.kt
+C:\Users\john\AndroidStudioProjects\InterCommerceApp\app\src\main\java\com\inter_rapidisimo\intercommerceapp\domain\product\Review.kt
+C:\Users\john\AndroidStudioProjects\InterCommerceApp\app\src\main\java\com\inter_rapidisimo\intercommerceapp\presentation\common\widgets\IsometricBoxIcon.kt
+C:\Users\john\AndroidStudioProjects\InterCommerceApp\app\src\main\java\com\inter_rapidisimo\intercommerceapp\presentation\common\widgets\LoadingArcIcon.kt
+C:\Users\john\AndroidStudioProjects\InterCommerceApp\app\src\main\java\com\inter_rapidisimo\intercommerceapp\presentation\home\utils\Modifiers.kt
+C:\Users\john\AndroidStudioProjects\InterCommerceApp\app\src\main\java\com\inter_rapidisimo\intercommerceapp\presentation\home\utils\Utils.kt
+C:\Users\john\AndroidStudioProjects\InterCommerceApp\app\src\main\java\com\inter_rapidisimo\intercommerceapp\presentation\home\widget\ApiProductGridCard.kt
+C:\Users\john\AndroidStudioProjects\InterCommerceApp\app\src\main\java\com\inter_rapidisimo\intercommerceapp\presentation\home\widget\BestSellersSection.kt
+C:\Users\john\AndroidStudioProjects\InterCommerceApp\app\src\main\java\com\inter_rapidisimo\intercommerceapp\presentation\home\widget\CategoryShortcutItem.kt
+C:\Users\john\AndroidStudioProjects\InterCommerceApp\app\src\main\java\com\inter_rapidisimo\intercommerceapp\presentation\home\widget\FastShippingInfoCard.kt
+C:\Users\john\AndroidStudioProjects\InterCommerceApp\app\src\main\java\com\inter_rapidisimo\intercommerceapp\presentation\home\widget\FeaturedProductsSection.kt
+C:\Users\john\AndroidStudioProjects\InterCommerceApp\app\src\main\java\com\inter_rapidisimo\intercommerceapp\presentation\home\widget\HomeBottomNavigationBar.kt
+C:\Users\john\AndroidStudioProjects\InterCommerceApp\app\src\main\java\com\inter_rapidisimo\intercommerceapp\presentation\home\widget\HomeCategoryShortcuts.kt
+C:\Users\john\AndroidStudioProjects\InterCommerceApp\app\src\main\java\com\inter_rapidisimo\intercommerceapp\presentation\home\widget\HomeHeaderSection.kt
+C:\Users\john\AndroidStudioProjects\InterCommerceApp\app\src\main\java\com\inter_rapidisimo\intercommerceapp\presentation\home\widget\HomePromoBanner.kt
+C:\Users\john\AndroidStudioProjects\InterCommerceApp\app\src\main\java\com\inter_rapidisimo\intercommerceapp\presentation\home\widget\ProductGridCard.kt
+C:\Users\john\AndroidStudioProjects\InterCommerceApp\app\src\main\java\com\inter_rapidisimo\intercommerceapp\presentation\home\HomeScreen.kt
+C:\Users\john\AndroidStudioProjects\InterCommerceApp\app\src\main\java\com\inter_rapidisimo\intercommerceapp\presentation\product\ProductScreen.kt
+C:\Users\john\AndroidStudioProjects\InterCommerceApp\app\src\main\java\com\inter_rapidisimo\intercommerceapp\presentation\product\ProductViewModel.kt
+C:\Users\john\AndroidStudioProjects\InterCommerceApp\app\src\main\java\com\inter_rapidisimo\intercommerceapp\presentation\splash\OfflineSplashScreen.kt
+C:\Users\john\AndroidStudioProjects\InterCommerceApp\app\src\main\java\com\inter_rapidisimo\intercommerceapp\presentation\splash\SplashScreen.kt

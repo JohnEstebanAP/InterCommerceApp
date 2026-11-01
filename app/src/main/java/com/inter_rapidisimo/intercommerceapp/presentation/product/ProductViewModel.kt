@@ -8,6 +8,7 @@ import com.inter_rapidisimo.intercommerceapp.domain.product.Product
 import com.inter_rapidisimo.intercommerceapp.domain.product.ProductList
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
+import java.util.Locale
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
@@ -25,6 +26,11 @@ class ProductViewModel @Inject constructor(
     
     private val _error = MutableStateFlow<String?>(null)
     val error: StateFlow<String?> = _error
+    private fun formatCopPrice(amountInUsdOrCop: Double): String {
+        val roundedInt = amountInUsdOrCop.toLong()
+        val formattedStr = String.format(Locale.US, "% ,d", roundedInt).replace(',', '.')
+        return "$formattedStr"
+    }
 
     fun fetchProducts(limit: Int = 10, skip: Int = 0) {
         viewModelScope.launch {

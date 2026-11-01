@@ -6,12 +6,10 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.animation.Crossfade
 import androidx.compose.animation.core.tween
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Surface
 import androidx.compose.runtime.*
-import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.inter_rapidisimo.intercommerceapp.presentation.product.ProductScreen
+import com.inter_rapidisimo.intercommerceapp.presentation.home.HomeScreen
 import com.inter_rapidisimo.intercommerceapp.presentation.splash.OfflineSplashScreen
 import com.inter_rapidisimo.intercommerceapp.presentation.splash.SplashScreen
 import com.inter_rapidisimo.intercommerceapp.ui.theme.InterCommerceAppTheme
@@ -48,8 +46,8 @@ class MainActivity : ComponentActivity() {
                             )
                         }
                     } else {
-                        Scaffold(modifier = Modifier.fillMaxSize()) { paddingValues ->
-                            ProductScreen(paddingValues)
+                        Surface {
+                            HomeScreen()
                         }
                     }
                 }
@@ -62,6 +60,6 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun GreetingPreview() {
     InterCommerceAppTheme {
-        SplashScreen()
+        HomeScreen()
     }
 }
