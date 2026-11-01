@@ -3,6 +3,7 @@
     package="com.inter_rapidisimo.intercommerceapp">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <application
         android:name=".InterCommerceApp"
         android:allowBackup="true"

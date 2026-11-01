@@ -4,13 +4,18 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.animation.Crossfade
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Scaffold
-import androidx.compose.runtime.Composable
+import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.inter_rapidisimo.intercommerceapp.presentation.product.ProductScreen
+import com.inter_rapidisimo.intercommerceapp.presentation.splash.OfflineSplashScreen
+import com.inter_rapidisimo.intercommerceapp.presentation.splash.SplashScreen
 import com.inter_rapidisimo.intercommerceapp.ui.theme.InterCommerceAppTheme
+import com.inter_rapidisimo.intercommerceapp.utils.rememberIsNetworkConnected
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -20,8 +25,33 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             InterCommerceAppTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { paddingValues ->
-                    ProductScreen(paddingValues)
+                val isOnline by rememberIsNetworkConnected()
+                var showSplash by remember { mutableStateOf(true) }
+
+                Crossfade(
+                    targetState = Pair(showSplash, isOnline),
+                    animationSpec = tween(durationMillis = 500),
+                    label = "SplashCrossfade"
+                ) { (isSplashVisible, online) ->
+                    if (isSplashVisible) {
+                        if (online) {
+                            SplashScreen(
+                                onSplashFinished = {
+                                    showSplash = false
+                                }
+                            )
+                        } else {
+                            OfflineSplashScreen(
+                                onExploreOfflineCatalog = {
+                                    showSplash = false
+                                }
+                            )
+                        }
+                    } else {
+                        Scaffold(modifier = Modifier.fillMaxSize()) { paddingValues ->
+                            ProductScreen(paddingValues)
+                        }
+                    }
                 }
             }
         }
@@ -32,8 +62,6 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun GreetingPreview() {
     InterCommerceAppTheme {
-        Scaffold(modifier = Modifier.fillMaxSize()) { paddingValues ->
-            ProductScreen(paddingValues)
-        }
+        SplashScreen()
     }
 }
