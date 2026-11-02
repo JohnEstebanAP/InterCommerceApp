@@ -32,13 +32,18 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.inter_rapidisimo.intercommerceapp.presentation.ui.common.SkeletonLevel
+import com.inter_rapidisimo.intercommerceapp.presentation.ui.common.skeleton
 import com.inter_rapidisimo.intercommerceapp.presentation.ui.widgets.IsometricBoxIcon
 
 @Composable fun HomeHeaderSection(
-    modifier: Modifier = Modifier
+    isLoading : Boolean
 ) {
+    val modifier = Modifier.skeleton(isLoading, SkeletonLevel.CHILD)
+    val modifierBackground = Modifier.skeleton(isLoading, SkeletonLevel.BACKGROUND)
+
     Box(
-        modifier = modifier
+        modifier = modifierBackground
             .fillMaxWidth()
             .background(Color(0xFFFFC72C))
             .statusBarsPadding()
@@ -58,14 +63,14 @@ import com.inter_rapidisimo.intercommerceapp.presentation.ui.widgets.IsometricBo
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     Box(
-                        modifier = Modifier
+                        modifier = modifier
                             .size(42.dp)
                             .clip(RoundedCornerShape(12.dp))
                             .background(Color(0xFF1A1A1A)),
                         contentAlignment = Alignment.Center
                     ) {
                         IsometricBoxIcon(
-                            modifier = Modifier.size(24.dp),
+                            modifier = modifier.size(24.dp),
                             color = Color(0xFFFFC72C)
                         )
                     }
@@ -73,6 +78,7 @@ import com.inter_rapidisimo.intercommerceapp.presentation.ui.widgets.IsometricBo
                     Spacer(modifier = Modifier.width(12.dp))
 
                     Text(
+                        modifier = modifier,
                         text = "InterCommerce",
                         fontSize = 22.sp,
                         fontWeight = FontWeight.ExtraBold,
@@ -87,13 +93,14 @@ import com.inter_rapidisimo.intercommerceapp.presentation.ui.widgets.IsometricBo
                 ) {
                     // Avatar Circle "VA"
                     Box(
-                        modifier = Modifier
+                        modifier = modifier
                             .size(38.dp)
                             .clip(CircleShape)
                             .background(Color.White),
                         contentAlignment = Alignment.Center
                     ) {
                         Text(
+                            modifier = modifier,
                             text = "VA",
                             fontSize = 14.sp,
                             fontWeight = FontWeight.Bold,
@@ -103,19 +110,19 @@ import com.inter_rapidisimo.intercommerceapp.presentation.ui.widgets.IsometricBo
 
                     // Cart Icon with Red Badge
                     Box(
-                        modifier = Modifier.size(38.dp),
+                        modifier = modifier.size(38.dp),
                         contentAlignment = Alignment.Center
                     ) {
                         Icon(
                             imageVector = Icons.Filled.ShoppingCart,
                             contentDescription = "Carrito",
-                            modifier = Modifier.size(26.dp),
+                            modifier = modifier.size(26.dp),
                             tint = Color(0xFF1A1A1A)
                         )
 
                         // Red Badge Counter "1"
                         Box(
-                            modifier = Modifier
+                            modifier = modifier
                                 .size(18.dp)
                                 .align(Alignment.TopEnd)
                                 .clip(CircleShape)
@@ -123,6 +130,7 @@ import com.inter_rapidisimo.intercommerceapp.presentation.ui.widgets.IsometricBo
                             contentAlignment = Alignment.Center
                         ) {
                             Text(
+                                modifier = modifier,
                                 text = "1",
                                 fontSize = 11.sp,
                                 fontWeight = FontWeight.Bold,
@@ -153,7 +161,7 @@ import com.inter_rapidisimo.intercommerceapp.presentation.ui.widgets.IsometricBo
                     Icon(
                         imageVector = Icons.Filled.Search,
                         contentDescription = "Buscar",
-                        modifier = Modifier.size(20.dp),
+                        modifier = modifier.size(20.dp),
                         tint = Color(0xFF757575)
                     )
 
@@ -164,13 +172,13 @@ import com.inter_rapidisimo.intercommerceapp.presentation.ui.widgets.IsometricBo
                         fontSize = 15.sp,
                         fontWeight = FontWeight.Normal,
                         color = Color(0xFF757575),
-                        modifier = Modifier.weight(1f)
+                        modifier = modifier.weight(1f)
                     )
 
                     Icon(
                         imageVector = Icons.Filled.Mic,
                         contentDescription = "Micrófono",
-                        modifier = Modifier.size(20.dp),
+                        modifier = modifier.size(20.dp),
                         tint = Color(0xFF757575)
                     )
                 }
@@ -190,13 +198,14 @@ import com.inter_rapidisimo.intercommerceapp.presentation.ui.widgets.IsometricBo
                     Icon(
                         imageVector = Icons.Filled.LocationOn,
                         contentDescription = "Ubicación",
-                        modifier = Modifier.size(16.dp),
+                        modifier = modifier.size(16.dp),
                         tint = Color(0xFF1A1A1A)
                     )
 
                     Spacer(modifier = Modifier.width(6.dp))
 
                     Text(
+                        modifier = modifier,
                         text = "Enviar a Valentina · Bogotá",
                         fontSize = 13.sp,
                         fontWeight = FontWeight.SemiBold,
@@ -210,13 +219,14 @@ import com.inter_rapidisimo.intercommerceapp.presentation.ui.widgets.IsometricBo
                     Icon(
                         imageVector = Icons.Filled.Wifi,
                         contentDescription = "En línea",
-                        modifier = Modifier.size(16.dp),
+                        modifier = modifier.size(16.dp),
                         tint = Color(0xFF1A1A1A)
                     )
 
                     Spacer(modifier = Modifier.width(6.dp))
 
                     Text(
+                        modifier = modifier,
                         text = "En línea",
                         fontSize = 12.sp,
                         fontWeight = FontWeight.Bold,

@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
@@ -18,21 +19,28 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.inter_rapidisimo.intercommerceapp.domain.product.Product
+import com.inter_rapidisimo.intercommerceapp.presentation.ui.common.SkeletonLevel
+import com.inter_rapidisimo.intercommerceapp.presentation.ui.common.skeleton
+import com.inter_rapidisimo.intercommerceapp.ui.theme.InterCommerceAppTheme
 
 @Composable
 fun BestSellersSection(
     products: List<Product>,
     isLoading: Boolean,
     error: String?,
-    modifier: Modifier = Modifier,
     onProductClick: (Product) -> Unit,
     onSeeAllClick: () -> Unit,
 ) {
+    val modifier = Modifier.skeleton(isLoading, SkeletonLevel.CHILD)
+    val modifierBackground = Modifier.skeleton(isLoading, SkeletonLevel.BACKGROUND)
+
     Column(
-        modifier = modifier.fillMaxWidth(),
+        modifier = modifierBackground.fillMaxWidth()
+            .padding(16.dp),
         verticalArrangement = Arrangement.spacedBy(14.dp)
     ) {
         // Section Title Header
@@ -46,6 +54,7 @@ fun BestSellersSection(
             verticalAlignment = Alignment.CenterVertically
         ) {
             Text(
+                modifier = modifier,
                 text = "Más vendidos",
                 fontSize = 20.sp,
                 fontWeight = FontWeight.ExtraBold,
@@ -60,6 +69,7 @@ fun BestSellersSection(
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Text(
+                    modifier = modifier,
                     text = "Ver todo",
                     fontSize = 14.sp,
                     fontWeight = FontWeight.Bold,
@@ -70,6 +80,7 @@ fun BestSellersSection(
 
                 Text(
                     text = "→",
+                    modifier = modifier,
                     fontSize = 15.sp,
                     fontWeight = FontWeight.Bold,
                     color = Color(0xFF1A1A1A)
@@ -85,7 +96,7 @@ fun BestSellersSection(
             horizontalArrangement = Arrangement.spacedBy(14.dp)
         ) {
             ApiProductGridCard(
-                modifier = Modifier.weight(1f),
+                modifier = modifier.weight(1f),
                 product = item1,
                 fallbackGraphic = {
                     Icon(
@@ -101,7 +112,7 @@ fun BestSellersSection(
             )
 
             ApiProductGridCard(
-                modifier = Modifier.weight(1f),
+                modifier = modifier.weight(1f),
                 product = item2,
                 fallbackGraphic = {
                     Icon(
@@ -116,5 +127,27 @@ fun BestSellersSection(
                 }
             )
         }
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun BestSellersSectionPreview() {
+    InterCommerceAppTheme {
+        BestSellersSection(
+            products = listOf(
+                Product(
+                    id = 1,
+                    title = "Parlante portátil Go Mini",
+                    description = "Pequeño en tamaño. Grande en sonido.",
+                    price = 22.49,
+                    thumbnail = ""
+                )
+            ),
+            isLoading = true,
+            onProductClick = {},
+            onSeeAllClick = {},
+            error = TODO()
+        )
     }
 }

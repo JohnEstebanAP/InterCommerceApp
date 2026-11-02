@@ -25,8 +25,11 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.inter_rapidisimo.intercommerceapp.presentation.ui.common.SkeletonLevel
+import com.inter_rapidisimo.intercommerceapp.presentation.ui.common.skeleton
 
-@Composable fun FastShippingInfoCard( modifier: Modifier = Modifier) {
+@Composable fun FastShippingInfoCard( isLoading: Boolean) {
+    val modifier = Modifier.skeleton(isLoading, SkeletonLevel.CHILD)
     Card(
         modifier = modifier.fillMaxWidth(),
         shape = RoundedCornerShape(18.dp),

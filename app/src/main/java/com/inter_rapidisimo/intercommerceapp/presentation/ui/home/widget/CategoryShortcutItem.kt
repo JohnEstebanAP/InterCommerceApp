@@ -17,17 +17,22 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.inter_rapidisimo.intercommerceapp.presentation.ui.common.SkeletonLevel
+import com.inter_rapidisimo.intercommerceapp.presentation.ui.common.skeleton
 
 @Composable fun CategoryShortcutItem(
     label: String,
-    icon: @Composable () -> Unit
+    isLoading : Boolean,
+    icon: @Composable () -> Unit,
 ) {
+    val modifier = Modifier.skeleton(isLoading, SkeletonLevel.CHILD)
+
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = Modifier.width(76.dp)
     ) {
         Box(
-            modifier = Modifier
+            modifier = modifier
                 .size(60.dp)
                 .clip(CircleShape)
                 .background(Color.White),
@@ -39,6 +44,7 @@ import androidx.compose.ui.unit.sp
         Spacer(modifier = Modifier.height(8.dp))
 
         Text(
+            modifier = modifier,
             text = label,
             fontSize = 12.sp,
             fontWeight = FontWeight.Medium,

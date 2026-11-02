@@ -84,7 +84,6 @@ fun HomeScreenContent(
                 .fillMaxSize()
                 .background(Color(0xFFF5F5F5))
                 .padding(paddingValues)
-                .skeleton(isLoading)
         ) {
             Column(
                 modifier = Modifier
@@ -92,7 +91,7 @@ fun HomeScreenContent(
                     .verticalScroll(rememberScrollState())
             ) {
                 // Header (Yellow Brand Area)
-                HomeHeaderSection(modifier = Modifier.skeleton(isLoading))
+                HomeHeaderSection(isLoading)
 
                 // Main Content Body
                 Column(
@@ -103,20 +102,19 @@ fun HomeScreenContent(
                 ) {
 
                     // Promo Banner Card
-                    HomePromoBanner(modifier = Modifier.skeleton(isLoading))
+                    HomePromoBanner(isLoading)
 
                     // Shipping Proposition Pill
-                    FastShippingInfoCard(modifier = Modifier.skeleton(isLoading))
+                    FastShippingInfoCard(isLoading)
 
                     // Category Shortcuts
-                    HomeCategoryShortcuts(modifier = Modifier.skeleton(isLoading))
+                    HomeCategoryShortcuts(isLoading)
 
                     // Section 1: Más vendidos (Consuming API Products)
                     BestSellersSection(
                         products = products,
                         isLoading = isLoading,
                         error = error,
-                        modifier = Modifier.skeleton(isLoading),
                         onProductClick = { product ->
                             navController.navigate(
                                 AppRoutes.ProductDetail.createRoute(
@@ -134,7 +132,7 @@ fun HomeScreenContent(
                     // Section 2: Productos destacados (Consuming API Products)
                     FeaturedProductsSection(
                         products = products,
-                        isLoading = true,
+                        isLoading = isLoading,
                         onProductClick = { product ->
 
                             navController.navigate(
