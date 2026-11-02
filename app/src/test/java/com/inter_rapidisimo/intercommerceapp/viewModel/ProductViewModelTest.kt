@@ -4,7 +4,7 @@ import com.inter_rapidisimo.intercommerceapp.domain.product.Product
 import com.inter_rapidisimo.intercommerceapp.domain.usecase.AddToCartUseCase
 import com.inter_rapidisimo.intercommerceapp.domain.usecase.GetProductByIdUseCase
 import com.inter_rapidisimo.intercommerceapp.domain.usecase.GetProductsUseCase
-import com.inter_rapidisimo.intercommerceapp.presentation.product.ProductViewModel
+import com.inter_rapidisimo.intercommerceapp.presentation.ui.product.ProductViewModel
 import io.mockk.coEvery
 import io.mockk.mockk
 import kotlinx.coroutines.ExperimentalCoroutinesApi

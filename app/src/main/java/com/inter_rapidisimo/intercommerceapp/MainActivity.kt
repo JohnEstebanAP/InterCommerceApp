@@ -9,10 +9,9 @@ import androidx.compose.animation.core.tween
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.*
 import androidx.compose.ui.tooling.preview.Preview
-import com.inter_rapidisimo.intercommerceapp.presentation.home.HomeScreen
 import com.inter_rapidisimo.intercommerceapp.presentation.navigation.AppNavigation
-import com.inter_rapidisimo.intercommerceapp.presentation.splash.OfflineSplashScreen
-import com.inter_rapidisimo.intercommerceapp.presentation.splash.SplashScreen
+import com.inter_rapidisimo.intercommerceapp.presentation.ui.splash.OfflineSplashScreen
+import com.inter_rapidisimo.intercommerceapp.presentation.ui.splash.SplashScreen
 import com.inter_rapidisimo.intercommerceapp.ui.theme.InterCommerceAppTheme
 import com.inter_rapidisimo.intercommerceapp.utils.rememberIsNetworkConnected
 import dagger.hilt.android.AndroidEntryPoint

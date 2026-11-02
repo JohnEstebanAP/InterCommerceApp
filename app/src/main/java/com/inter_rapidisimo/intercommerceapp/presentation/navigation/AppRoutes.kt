@@ -20,4 +20,8 @@ sealed class AppRoutes(
     data object Products :
         AppRoutes("products") {
     }
+
+    data object cart :
+        AppRoutes("cart") {
+    }
 }
