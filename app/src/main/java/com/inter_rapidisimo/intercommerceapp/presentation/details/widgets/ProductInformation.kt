@@ -22,11 +22,12 @@ import com.inter_rapidisimo.intercommerceapp.domain.product.Product
 
 @Composable
 fun ProductInformation(
+    modifier: Modifier = Modifier,
     product: Product
 ) {
 
     Column(
-        modifier = Modifier.padding(horizontal = 20.dp)
+        modifier = modifier.padding(horizontal = 20.dp)
     ) {
 
         Text(

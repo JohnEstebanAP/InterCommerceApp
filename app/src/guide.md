@@ -117,8 +117,9 @@ Tareas ya completadas del proyecto
 7. Arquitectura basada en Clean Architecture.
 8. se creo la pantalla de cart 
 9. ya estan los casos de uso para cart
+10. se agregaron 4 test para los casos de uso y 1 test para el view model
 - se creo el dto de cart el entyp 
-- screo el repository de cart
+- se creo el repository de cart
 - Patrón Repository.
 - Offline First mediante Room.
 - Inyección de Dependencias con Hilt.

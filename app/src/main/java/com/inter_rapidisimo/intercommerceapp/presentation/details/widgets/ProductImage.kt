@@ -14,11 +14,12 @@ import coil.compose.AsyncImage
 
 @Composable
  fun ProductImage(
+    modifier: Modifier = Modifier,
     imageUrl: String
 ) {
 
     Card(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxWidth()
             .height(340.dp)
             .padding(horizontal = 20.dp),
@@ -28,7 +29,7 @@ import coil.compose.AsyncImage
         AsyncImage(
             model = imageUrl,
             contentDescription = null,
-            modifier = Modifier.fillMaxSize(),
+            modifier = modifier.fillMaxSize(),
             contentScale = ContentScale.Fit
         )
     }

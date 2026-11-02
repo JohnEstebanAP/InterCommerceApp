@@ -17,6 +17,7 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 @Composable
 fun ProductDetailContent(
+    modifier: Modifier = Modifier,
     product: Product,
     onBackClick: () -> Unit,
     onAddToCart: (Product) -> Unit
@@ -37,31 +38,35 @@ fun ProductDetailContent(
     ) { padding ->
 
         Column(
-            modifier = Modifier
+            modifier = modifier
                 .fillMaxSize()
                 .padding(padding)
                 .verticalScroll(rememberScrollState())
         ) {
 
             ProductHeader(
+                modifier = modifier,
                 onBackClick = onBackClick
             )
 
             Spacer(modifier = Modifier.height(16.dp))
 
             ProductImage(
+                modifier = modifier,
                 imageUrl = product.thumbnail
             )
 
             Spacer(modifier = Modifier.height(20.dp))
 
             ProductInformation(
+                modifier = modifier,
                 product = product
             )
 
             Spacer(modifier = Modifier.height(32.dp))
 
             AddToCartButton(
+                modifier = modifier,
                 enabled = !isAddingToCart
             ) {
                 if (isAddingToCart) return@AddToCartButton

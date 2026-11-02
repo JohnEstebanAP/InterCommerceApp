@@ -10,6 +10,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.inter_rapidisimo.intercommerceapp.domain.product.Product
 import com.inter_rapidisimo.intercommerceapp.presentation.details.widgets.ProductDetailContent
+import com.inter_rapidisimo.intercommerceapp.presentation.home.utils.skeleton
 import com.inter_rapidisimo.intercommerceapp.presentation.product.ProductViewModel
 @Composable
 fun ProductDetailScreen(
@@ -33,11 +34,9 @@ fun ProductDetailScreen(
         isLoading -> {
 
             Box(
-                modifier = Modifier.fillMaxSize(),
+                modifier = Modifier.skeleton(isLoading),
                 contentAlignment = Alignment.Center
             ) {
-
-                CircularProgressIndicator()
             }
         }
 
@@ -55,6 +54,7 @@ fun ProductDetailScreen(
         product != null -> {
 
             ProductDetailContent(
+                modifier = Modifier.skeleton(isLoading),
                 product = product!!,
                 onBackClick = {
                     navController.popBackStack()

@@ -16,11 +16,12 @@ import androidx.compose.ui.unit.dp
 
 @Composable
 fun ProductHeader(
+    modifier: Modifier = Modifier,
     onBackClick: () -> Unit
 ) {
 
     Row(
-        modifier = Modifier
+        modifier = modifier
             .padding(
                 horizontal = 20.dp,
                 vertical = 16.dp
