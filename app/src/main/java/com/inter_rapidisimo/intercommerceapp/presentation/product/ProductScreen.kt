@@ -12,11 +12,12 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavController
 import com.inter_rapidisimo.intercommerceapp.domain.product.Product
 
 @Composable
 fun ProductScreen(
-    paddingValues: PaddingValues,
+    navController: NavController,
     viewModel: ProductViewModel = hiltViewModel()
 ) {
     val products by viewModel.products.collectAsState()
@@ -27,7 +28,8 @@ fun ProductScreen(
         viewModel.fetchProducts()
     }
     
-    Box(modifier = Modifier.fillMaxSize()) {
+    Box(modifier = Modifier.fillMaxSize(),      contentAlignment = Alignment.Center
+    ) {
         if (isLoading) {
             CircularProgressIndicator(modifier = Modifier.align(Alignment.Center))
         } else if (error != null) {

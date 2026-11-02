@@ -21,7 +21,7 @@ import androidx.compose.ui.unit.sp
 import com.inter_rapidisimo.intercommerceapp.domain.product.Product
 
 @Composable
-private fun ProductInformation(
+fun ProductInformation(
     product: Product
 ) {
 

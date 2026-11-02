@@ -26,7 +26,8 @@ import com.inter_rapidisimo.intercommerceapp.presentation.home.widget.skeleton.P
     products: List<Product>,
     isLoading: Boolean,
     error: String?,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    onProductClick: (Product) -> Unit
 ) {
     Column(
         modifier = modifier.fillMaxWidth(),
@@ -100,6 +101,9 @@ import com.inter_rapidisimo.intercommerceapp.presentation.home.widget.skeleton.P
                             modifier = modifier.size(70.dp),
                             tint = Color(0xFF1A1A1A)
                         )
+                    },
+                    onClick = {
+                        onProductClick(item1)
                     }
                 )
 
@@ -113,6 +117,9 @@ import com.inter_rapidisimo.intercommerceapp.presentation.home.widget.skeleton.P
                             modifier = modifier.size(70.dp),
                             tint = Color(0xFF1A1A1A)
                         )
+                    },
+                    onClick = {
+                        onProductClick(item2)
                     }
                 )
             }

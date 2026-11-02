@@ -24,6 +24,12 @@ class ProductViewModel @Inject constructor(
     private val _error = MutableStateFlow<String?>(null)
     val error: StateFlow<String?> = _error
 
+    private val _selectedProduct =
+        MutableStateFlow<Product?>(null)
+
+    val selectedProduct: StateFlow<Product?> =
+        _selectedProduct
+
     fun fetchProducts(limit: Int = 10, skip: Int = 0) {
         viewModelScope.launch {
             _isLoading.value = true
@@ -40,6 +46,31 @@ class ProductViewModel @Inject constructor(
             } catch (e: Exception) {
                 _error.value = "Error al cargar productos: ${e.message}"
             } finally {
+                _isLoading.value = false
+            }
+        }
+    }
+
+    fun loadProduct(
+        productId: Int
+    ) {
+
+        viewModelScope.launch {
+
+            _isLoading.value = true
+
+            try {
+
+                _selectedProduct.value =
+                    repository.getProductById(productId)
+
+            } catch (e: Exception) {
+
+                _error.value =
+                    e.message ?: "Error"
+
+            } finally {
+
                 _isLoading.value = false
             }
         }

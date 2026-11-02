@@ -23,9 +23,13 @@ import com.inter_rapidisimo.intercommerceapp.presentation.product.ProductViewMod
 import com.inter_rapidisimo.intercommerceapp.presentation.home.widget.HomePromoBanner
 import com.inter_rapidisimo.intercommerceapp.presentation.home.widget.HomeHeaderSection
 import kotlin.random.Random
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
+import com.inter_rapidisimo.intercommerceapp.presentation.navigation.AppRoutes
 
 @Composable
 fun HomeScreen(
+    navController: NavController,
     viewModel: ProductViewModel? = if (LocalInspectionMode.current) null else hiltViewModel()
 ) {
     if (viewModel != null) {
@@ -38,12 +42,14 @@ fun HomeScreen(
         }
 
         HomeScreenContent(
+            navController = navController,
             products = products,
             isLoading = isLoading,
             error = error
         )
     } else {
         HomeScreenContent(
+            navController = navController,
             products = emptyList(),
             isLoading = false,
             error = null
@@ -53,6 +59,7 @@ fun HomeScreen(
 
 @Composable
 fun HomeScreenContent(
+    navController: NavController,
     products: List<Product> = emptyList(),
     isLoading: Boolean = false,
     error: String? = null
@@ -104,7 +111,14 @@ fun HomeScreenContent(
                         products = products,
                         isLoading = isLoading,
                         error = error,
-                        modifier = Modifier.skeleton(isLoading)
+                        modifier = Modifier.skeleton(isLoading),
+                        onProductClick = { product ->
+                            navController.navigate(
+                                AppRoutes.ProductDetail.createRoute(
+                                    product.id
+                                )
+                            )
+                        }
                     )
 
                     // Section 2: Productos destacados (Consuming API Products)
@@ -124,5 +138,6 @@ fun HomeScreenContent(
 @Preview(showBackground = true)
 @Composable
 fun HomeScreenPreview() {
-    HomeScreenContent()
+    val navController = rememberNavController() // Create a NavController instance
+    HomeScreenContent(navController = navController) // Pass the NavController to HomeScreenContent
 }

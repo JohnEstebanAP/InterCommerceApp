@@ -1,6 +1,7 @@
 package com.inter_rapidisimo.intercommerceapp.presentation.home.widget
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -33,6 +34,7 @@ import java.util.Locale
 @Composable fun ApiProductGridCard(
     modifier: Modifier = Modifier,
     product: Product,
+    onClick: () -> Unit,
     fallbackGraphic: @Composable () -> Unit
 ) {
     val currentPriceFormatted = Utils.formatCopPrice(product.price * 4000.0)
@@ -41,7 +43,7 @@ import java.util.Locale
     } else null
 
     Card(
-        modifier = modifier,
+        modifier = modifier.clickable {onClick()},
         shape = RoundedCornerShape(20.dp),
         colors = CardDefaults.cardColors(containerColor = Color.White),
         elevation = CardDefaults.cardElevation(defaultElevation = 0.dp)
