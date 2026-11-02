@@ -79,25 +79,6 @@ Proyecto: InterCommerce App (Android Nativo)
    entrada/salida a los hilos de fondo mediante Kotlin Coroutines (using
    Dispatchers.IO).
 
-3. Configuración de la API (Data Source)
-   La aplicación debe consumir exclusivamente la API de DummyJSON:
-   • Listado y Paginación: https://dummyjson.com/products?limit=10&skip=0
-   • Búsqueda: https://dummyjson.com/products/search?q={query}
-   • Detalle: https://dummyjson.com/products/2
-
-4. Preguntas de Profundidad Técnica
-
-1. Arquitectura y Resiliencia: Explique cómo la inversión de dependencia y el uso de
-   interfaces en la capa de Domain facilitarían cambiar por completo el motor de
-   persistencia local (ej. migrar de una base de datos relacional en SQLite con Room a
-   una solución NoSQL orientada a objetos como ObjectBox) sin alterar una sola línea
-   de código de la interfaz de usuario en Compose.
-
-2. Estrategias Offline: Al implementar una arquitectura Offline-First apoyada en SQLite
-   o ObjectBox, ¿cómo gestionaría la sincronización de datos de la API para evitar
-   conflictos de concurrencia o sobrescritura de datos locales si el usuario añade
-   elementos al carrito mientras no tiene conexión a internet?
- 
  
 6. Instrucciones de Entrega
  
