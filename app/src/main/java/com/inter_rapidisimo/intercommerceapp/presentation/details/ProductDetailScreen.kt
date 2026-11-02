@@ -59,9 +59,8 @@ fun ProductDetailScreen(
                 onBackClick = {
                     navController.popBackStack()
                 },
-                onAddToCart = {
-
-                    // Lo implementaremos después
+                onAddToCart = { product ->
+                    viewModel.addToCart(product)
                 }
             )
         }

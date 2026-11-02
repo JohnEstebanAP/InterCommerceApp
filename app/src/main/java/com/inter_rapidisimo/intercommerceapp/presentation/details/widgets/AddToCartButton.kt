@@ -13,13 +13,14 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-
 @Composable
- fun AddToCartButton(
+fun AddToCartButton(
+    enabled: Boolean = true,
     onClick: () -> Unit
 ) {
 
     Button(
+        enabled = enabled,
         onClick = onClick,
         modifier = Modifier
             .fillMaxWidth()
@@ -32,7 +33,11 @@ import androidx.compose.ui.unit.sp
     ) {
 
         Text(
-            text = "Agregar al carrito",
+            text = if (enabled) {
+                "Agregar al carrito"
+            } else {
+                "Agregando..."
+            },
             color = Color.Black,
             fontWeight = FontWeight.Bold,
             fontSize = 18.sp

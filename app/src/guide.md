@@ -112,6 +112,15 @@ Tareas ya completadas del proyecto
 2. se creo el home consumiendo las apis implementadas, permitiendo mostrar el skeleton de carga
 3. se implemento el cliente de red ktor 
 4. se crearon los modelos nesesarios.
+5. se creo la pantallade home y detalle de producto
+5. - Arquitectura basada en Clean Architecture.
+- Patrón Repository.
+- Offline First mediante Room.
+- Inyección de Dependencias con Hilt.
+- UI declarativa con Jetpack Compose.
+- Estado reactivo mediante StateFlow.
+- Networking con Ktor.
+- Serialización con Kotlinx Serialization.
 
 archivos creados
 C:\Users\john\AndroidStudioProjects\InterCommerceApp\app\src\main\java\com\inter_rapidisimo\intercommerceapp\application\KtorClient\KtorClient.kt.
