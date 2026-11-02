@@ -9,6 +9,7 @@ import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.inter_rapidisimo.intercommerceapp.domain.product.Product
+import com.inter_rapidisimo.intercommerceapp.presentation.details.widgets.ProductDetailContent
 import com.inter_rapidisimo.intercommerceapp.presentation.product.ProductViewModel
 @Composable
 fun ProductDetailScreen(
@@ -24,7 +25,6 @@ fun ProductDetailScreen(
     val error by viewModel.error.collectAsState()
 
     LaunchedEffect(productId) {
-
         viewModel.loadProduct(productId)
     }
 
@@ -52,5 +52,20 @@ fun ProductDetailScreen(
             }
         }
 
+        product != null -> {
+
+            ProductDetailContent(
+                product = product!!,
+                onBackClick = {
+                    navController.popBackStack()
+                },
+                onAddToCart = {
+
+                    // Lo implementaremos después
+                }
+            )
+        }
+
     }
 }
+

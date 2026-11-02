@@ -1,4 +1,4 @@
-package com.inter_rapidisimo.intercommerceapp.presentation.details
+package com.inter_rapidisimo.intercommerceapp.presentation.details.widgets
 
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
