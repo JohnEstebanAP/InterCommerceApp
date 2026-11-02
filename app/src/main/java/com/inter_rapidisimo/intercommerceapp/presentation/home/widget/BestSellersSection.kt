@@ -21,13 +21,14 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.inter_rapidisimo.intercommerceapp.domain.product.Product
 import com.inter_rapidisimo.intercommerceapp.presentation.home.widget.skeleton.ProductSkeletonItem
-
+import androidx.compose.foundation.clickable
 @Composable fun BestSellersSection(
     products: List<Product>,
     isLoading: Boolean,
     error: String?,
     modifier: Modifier = Modifier,
-    onProductClick: (Product) -> Unit
+    onProductClick: (Product) -> Unit,
+    onSeeAllClick: () -> Unit
 ) {
     Column(
         modifier = modifier.fillMaxWidth(),
@@ -35,7 +36,9 @@ import com.inter_rapidisimo.intercommerceapp.presentation.home.widget.skeleton.P
     ) {
         // Section Title Header
         Row(
-            modifier = modifier.fillMaxWidth(),
+            modifier = modifier.fillMaxWidth().clickable {
+                onSeeAllClick()
+            },
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
         ) {
@@ -47,6 +50,9 @@ import com.inter_rapidisimo.intercommerceapp.presentation.home.widget.skeleton.P
             )
 
             Row(
+                modifier = modifier.fillMaxWidth().clickable {
+                    onSeeAllClick()
+                },
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Text(

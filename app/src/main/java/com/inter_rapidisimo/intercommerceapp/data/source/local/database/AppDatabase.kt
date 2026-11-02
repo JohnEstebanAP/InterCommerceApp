@@ -12,7 +12,7 @@ import com.inter_rapidisimo.intercommerceapp.data.source.local.entity.CartEntity
         ProductEntity::class,
         CartEntity::class
     ],
-    version = 1,
+    version = 2,
     exportSchema = false
 )
 abstract class AppDatabase : RoomDatabase() {

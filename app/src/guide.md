@@ -113,7 +113,12 @@ Tareas ya completadas del proyecto
 3. se implemento el cliente de red ktor 
 4. se crearon los modelos nesesarios.
 5. se creo la pantallade home y detalle de producto
-5. - Arquitectura basada en Clean Architecture.
+6. Implementar vibración al agregar carrito.
+7. Arquitectura basada en Clean Architecture.
+8. se creo la pantalla de cart 
+9. ya estan los casos de uso para cart
+- se creo el dto de cart el entyp 
+- screo el repository de cart
 - Patrón Repository.
 - Offline First mediante Room.
 - Inyección de Dependencias con Hilt.

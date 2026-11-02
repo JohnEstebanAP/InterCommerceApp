@@ -1,6 +1,7 @@
 package com.inter_rapidisimo.intercommerceapp.presentation.home.widget
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -38,7 +39,9 @@ import com.inter_rapidisimo.intercommerceapp.presentation.home.widget.skeleton.F
 fun FeaturedProductsSection(
     products: List<Product>,
     isLoading: Boolean,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    onProductClick: (Product) -> Unit,
+    onSeeAllClick: () -> Unit
 ) {
     val featuredItem = products.getOrNull(2) ?: products.firstOrNull()
 
@@ -48,7 +51,9 @@ fun FeaturedProductsSection(
     ) {
         // Section Title Header
         Row(
-            modifier = modifier.fillMaxWidth(),
+            modifier = Modifier.clickable {
+                onSeeAllClick()
+            },
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
         ) {
@@ -88,7 +93,12 @@ fun FeaturedProductsSection(
                 modifier = modifier.fillMaxWidth(),
                 shape = RoundedCornerShape(20.dp),
                 colors = CardDefaults.cardColors(containerColor = Color.White),
-                elevation = CardDefaults.cardElevation(defaultElevation = 0.dp)
+                elevation = CardDefaults.cardElevation(defaultElevation = 0.dp),
+                onClick = {
+                    featuredItem?.let {
+                        onProductClick(it)
+                    }
+                }
             ) {
                 Row(
                     modifier = modifier

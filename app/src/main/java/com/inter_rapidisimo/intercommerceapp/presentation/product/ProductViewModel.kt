@@ -31,14 +31,21 @@ class ProductViewModel @Inject constructor(
     private val _selectedProduct = MutableStateFlow<Product?>(null)
 
     val selectedProduct: StateFlow<Product?> = _selectedProduct
+    private var currentSkip = 0
 
-    fun fetchProducts(limit: Int = 10, skip: Int = 0) {
+    private val pageSize = 10
+
+    private var isLastPage = false
+    fun fetchProducts(limit: Int = pageSize, skip: Int = 0) {
         viewModelScope.launch {
             _isLoading.value = true
             _error.value = null
 
             try {
                 val products = getProductsUseCase(limit, skip)
+
+                currentSkip = products.size
+                isLastPage = products.isEmpty()
 
                 if (products.isNotEmpty()) {
                     _products.value = products
@@ -53,6 +60,46 @@ class ProductViewModel @Inject constructor(
         }
     }
 
+    fun loadMoreProducts() {
+
+        if (_isLoading.value) return
+
+        if (isLastPage) return
+
+        viewModelScope.launch {
+
+            _isLoading.value = true
+
+            try {
+
+                val newProducts = getProductsUseCase(
+                    pageSize,
+                    currentSkip
+                )
+
+                if (newProducts.isEmpty()) {
+
+                    isLastPage = true
+
+                } else {
+
+                    _products.value =
+                        _products.value + newProducts
+
+                    currentSkip += newProducts.size
+                }
+
+            } catch (e: Exception) {
+
+                _error.value =
+                    "Error al cargar más productos"
+
+            } finally {
+
+                _isLoading.value = false
+            }
+        }
+    }
     fun loadProduct(
         productId: Int
     ) {

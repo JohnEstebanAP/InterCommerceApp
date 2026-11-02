@@ -118,6 +118,11 @@ fun HomeScreenContent(
                                     product.id
                                 )
                             )
+                        },
+                        onSeeAllClick = {
+                            navController.navigate(
+                                AppRoutes.Products.route
+                            )
                         }
                     )
 
@@ -125,7 +130,20 @@ fun HomeScreenContent(
                     FeaturedProductsSection(
                         products = products,
                         isLoading = isLoading,
-                        modifier = Modifier.skeleton(isLoading)
+                        modifier = Modifier.skeleton(isLoading),
+                        onProductClick = { product ->
+
+                            navController.navigate(
+                                AppRoutes.ProductDetail.createRoute(
+                                    product.id
+                                )
+                            )
+                        },
+                        onSeeAllClick = {
+                            navController.navigate(
+                                AppRoutes.Products.route
+                            )
+                        }
                     )
 
                     Spacer(modifier = Modifier.height(16.dp))
