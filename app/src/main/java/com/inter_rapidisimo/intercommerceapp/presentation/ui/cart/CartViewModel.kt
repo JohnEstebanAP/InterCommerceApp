@@ -2,6 +2,7 @@ package com.inter_rapidisimo.intercommerceapp.presentation.ui.cart
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.inter_rapidisimo.intercommerceapp.data.source.local.entity.CartEntity
 import com.inter_rapidisimo.intercommerceapp.domain.product.Product
 import com.inter_rapidisimo.intercommerceapp.domain.repository.CartRepository
 import com.inter_rapidisimo.intercommerceapp.domain.usecase.AddToCartUseCase
@@ -45,6 +46,37 @@ class CartViewModel @Inject constructor(
     fun addToCart(product: Product) {
         viewModelScope.launch {
             addToCartUseCase(product)
+        }
+    }
+
+    fun increaseQuantity(item: CartEntity) {
+        viewModelScope.launch {
+
+            repository.updateQuantity(
+                productId = item.productId,
+                quantity = item.quantity + 1
+            )
+        }
+    }
+
+    fun decreaseQuantity(item: CartEntity) {
+        viewModelScope.launch {
+
+            if (item.quantity > 1) {
+
+                repository.updateQuantity(
+                    productId = item.productId,
+                    quantity = item.quantity - 1
+                )
+            } else {
+                repository.removeItem(item.productId)
+            }
+        }
+    }
+
+    fun removeItem(item: CartEntity) {
+        viewModelScope.launch {
+            repository.removeItem(item.productId)
         }
     }
 }
