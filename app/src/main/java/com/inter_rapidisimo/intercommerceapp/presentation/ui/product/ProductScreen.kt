@@ -33,6 +33,8 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
+import com.inter_rapidisimo.intercommerceapp.R
 import com.inter_rapidisimo.intercommerceapp.domain.product.Product
 import com.inter_rapidisimo.intercommerceapp.presentation.navigation.AppRoutes
 
@@ -228,7 +230,16 @@ fun ProductItem(
 
                     modifier = Modifier
                         .fillMaxSize()
-                        .padding(10.dp)
+                        .padding(10.dp),
+                    placeholder = painterResource(
+                        com.inter_rapidisimo.intercommerceapp.R.drawable.ic_product_placeholder_foreground
+                    ),
+                    error = painterResource(
+                        com.inter_rapidisimo.intercommerceapp.R.drawable.ic_product_placeholder_foreground
+                    ),
+                    fallback = painterResource(
+                        R.drawable.ic_product_placeholder_foreground
+                    ),
                 )
 
                 Surface(

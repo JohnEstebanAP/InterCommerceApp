@@ -21,12 +21,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
+import com.inter_rapidisimo.intercommerceapp.R
 import com.inter_rapidisimo.intercommerceapp.domain.product.Product
 import com.inter_rapidisimo.intercommerceapp.presentation.ui.common.utils.Utils
 import java.util.Locale
@@ -70,7 +72,16 @@ fun ApiProductGridCard(
                         modifier = Modifier
                             .fillMaxSize()
                             .padding(8.dp),
-                        contentScale = ContentScale.Fit
+                        contentScale = ContentScale.Fit,
+                        placeholder = painterResource(
+                            R.drawable.ic_product_placeholder_foreground
+                        ),
+                        error = painterResource(
+                            R.drawable.ic_product_placeholder_foreground
+                        ),
+                        fallback = painterResource(
+                            R.drawable.ic_product_placeholder_foreground
+                        ),
                     )
                 } else {
                     fallbackGraphic()

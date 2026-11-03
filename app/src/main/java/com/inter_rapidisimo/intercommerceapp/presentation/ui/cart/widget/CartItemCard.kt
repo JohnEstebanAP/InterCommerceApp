@@ -26,11 +26,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
+import com.inter_rapidisimo.intercommerceapp.R
 import com.inter_rapidisimo.intercommerceapp.data.source.local.entity.CartEntity
 
 @Composable
@@ -61,7 +63,16 @@ fun CartItemCard(
                 modifier = Modifier
                     .size(90.dp)
                     .clip(RoundedCornerShape(12.dp)),
-                contentScale = ContentScale.Crop
+                contentScale = ContentScale.Crop,
+                placeholder = painterResource(
+                    R.drawable.ic_product_placeholder_foreground
+                ),
+                error = painterResource(
+                    R.drawable.ic_product_placeholder_foreground
+                ),
+                fallback = painterResource(
+                    R.drawable.ic_product_placeholder_foreground
+                ),
             )
 
             Spacer(modifier = Modifier.width(16.dp))

@@ -1,6 +1,7 @@
 package com.inter_rapidisimo.intercommerceapp.presentation.ui.home.widget
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -36,8 +37,9 @@ import com.inter_rapidisimo.intercommerceapp.presentation.ui.common.skeleton
             modifier = modifier
                 .size(60.dp)
                 .clip(CircleShape)
-                .background(Color.White),
-            contentAlignment = Alignment.Center
+                .background(Color.White)
+                .clickable(enabled = !isLoading, onClick = onClick),
+            contentAlignment = Alignment.Center,
         ) {
             icon()
         }

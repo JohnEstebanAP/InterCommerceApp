@@ -1,5 +1,6 @@
 package com.inter_rapidisimo.intercommerceapp.presentation.ui.home.widget
 
+import com.inter_rapidisimo.intercommerceapp.R
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -26,6 +27,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
@@ -119,7 +121,16 @@ fun FeaturedProductsSection(
                                 modifier = Modifier
                                     .fillMaxSize()
                                     .padding(6.dp),
-                                contentScale = ContentScale.Fit
+                                contentScale = ContentScale.Fit,
+                                placeholder = painterResource(
+                                    R.drawable.ic_product_placeholder_foreground
+                                ),
+                                error = painterResource(
+                                    R.drawable.ic_product_placeholder_foreground
+                                ),
+                                fallback = painterResource(
+                                    R.drawable.ic_product_placeholder_foreground
+                                ),
                             )
                         } else {
                             Icon(
