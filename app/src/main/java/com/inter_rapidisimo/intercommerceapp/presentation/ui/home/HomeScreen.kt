@@ -13,7 +13,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.inter_rapidisimo.intercommerceapp.domain.product.Product
-import com.inter_rapidisimo.intercommerceapp.presentation.ui.common.skeleton
 import com.inter_rapidisimo.intercommerceapp.presentation.ui.home.widget.BestSellersSection
 import com.inter_rapidisimo.intercommerceapp.presentation.ui.home.widget.FastShippingInfoCard
 import com.inter_rapidisimo.intercommerceapp.presentation.ui.home.widget.FeaturedProductsSection
@@ -102,13 +101,26 @@ fun HomeScreenContent(
                 ) {
 
                     // Promo Banner Card
-                    HomePromoBanner(isLoading)
+                    HomePromoBanner(
+                        isLoading,
+                        onClick = {
+                            navController.navigate(
+                                AppRoutes.Products.route
+                            )
+                        })
 
                     // Shipping Proposition Pill
                     FastShippingInfoCard(isLoading)
 
                     // Category Shortcuts
-                    HomeCategoryShortcuts(isLoading)
+                    HomeCategoryShortcuts(
+                        isLoading,
+                        onClick = {
+                            navController.navigate(
+                                AppRoutes.Products.route
+                            )
+                        },
+                    )
 
                     // Section 1: Más vendidos (Consuming API Products)
                     BestSellersSection(
@@ -134,7 +146,6 @@ fun HomeScreenContent(
                         products = products,
                         isLoading = isLoading,
                         onProductClick = { product ->
-
                             navController.navigate(
                                 AppRoutes.ProductDetail.createRoute(
                                     product.id

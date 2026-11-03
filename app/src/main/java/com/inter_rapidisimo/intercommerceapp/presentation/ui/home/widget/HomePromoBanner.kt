@@ -28,13 +28,14 @@ import androidx.compose.ui.unit.sp
 import com.inter_rapidisimo.intercommerceapp.presentation.ui.common.SkeletonLevel
 import com.inter_rapidisimo.intercommerceapp.presentation.ui.common.skeleton
 
-@Composable fun HomePromoBanner(isLoading: Boolean) {
+@Composable fun HomePromoBanner(isLoading: Boolean, onClick: () -> Unit) {
     val modifier = Modifier.skeleton(isLoading, SkeletonLevel.CHILD)
     Card(
         modifier = modifier.fillMaxWidth(),
         shape = RoundedCornerShape(24.dp),
         colors = CardDefaults.cardColors(containerColor = Color(0xFF1A1A1A)),
-        elevation = CardDefaults.cardElevation(defaultElevation = 0.dp)
+        elevation = CardDefaults.cardElevation(defaultElevation = 0.dp),
+        onClick =onClick
     ) {
         Row(
             modifier = Modifier

@@ -23,6 +23,7 @@ import com.inter_rapidisimo.intercommerceapp.presentation.ui.common.skeleton
 @Composable fun CategoryShortcutItem(
     label: String,
     isLoading : Boolean,
+    onClick: () -> Unit,
     icon: @Composable () -> Unit,
 ) {
     val modifier = Modifier.skeleton(isLoading, SkeletonLevel.CHILD)

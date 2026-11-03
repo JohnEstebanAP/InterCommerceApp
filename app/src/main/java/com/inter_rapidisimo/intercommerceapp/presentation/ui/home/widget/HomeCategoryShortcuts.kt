@@ -18,7 +18,7 @@ import androidx.compose.ui.unit.dp
 import com.inter_rapidisimo.intercommerceapp.presentation.ui.common.SkeletonLevel
 import com.inter_rapidisimo.intercommerceapp.presentation.ui.common.skeleton
 
-@Composable fun HomeCategoryShortcuts(   isLoading: Boolean) {
+@Composable fun HomeCategoryShortcuts(isLoading: Boolean, onClick: () -> Unit) {
     val modifierBackground = Modifier.skeleton(isLoading, SkeletonLevel.BACKGROUND)
 
     Row(
@@ -26,7 +26,7 @@ import com.inter_rapidisimo.intercommerceapp.presentation.ui.common.skeleton
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.Top
     ) {
-        CategoryShortcutItem("Tecnología", isLoading) {
+        CategoryShortcutItem("Tecnología", isLoading, onClick) {
             Icon(
                 imageVector = Icons.Filled.Headphones,
                 contentDescription = "Tecnología",
@@ -34,7 +34,7 @@ import com.inter_rapidisimo.intercommerceapp.presentation.ui.common.skeleton
                 tint = Color(0xFF1A1A1A)
             )
         }
-        CategoryShortcutItem("Estilo de vida", isLoading) {
+        CategoryShortcutItem("Estilo de vida", isLoading, onClick) {
             Icon(
                 imageVector = Icons.Outlined.Backpack,
                 contentDescription = "Estilo de vida",
@@ -42,7 +42,7 @@ import com.inter_rapidisimo.intercommerceapp.presentation.ui.common.skeleton
                 tint = Color(0xFF1A1A1A)
             )
         }
-        CategoryShortcutItem("Hogar", isLoading) {
+        CategoryShortcutItem("Hogar", isLoading, onClick) {
             Icon(
                 imageVector = Icons.Filled.Home,
                 contentDescription = "Hogar",
@@ -50,7 +50,7 @@ import com.inter_rapidisimo.intercommerceapp.presentation.ui.common.skeleton
                 tint = Color(0xFF1A1A1A)
             )
         }
-        CategoryShortcutItem("Ofertas", isLoading) {
+        CategoryShortcutItem("Ofertas", isLoading, onClick) {
             Icon(
                 imageVector = Icons.Filled.LocalOffer,
                 contentDescription = "Ofertas",
