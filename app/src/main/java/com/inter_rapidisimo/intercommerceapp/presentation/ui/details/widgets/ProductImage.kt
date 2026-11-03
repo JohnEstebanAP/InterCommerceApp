@@ -9,9 +9,12 @@ import androidx.compose.material3.Card
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
+import coil.request.CachePolicy
+import coil.request.ImageRequest
 import com.inter_rapidisimo.intercommerceapp.R
 
 @Composable
@@ -29,7 +32,13 @@ import com.inter_rapidisimo.intercommerceapp.R
     ) {
 
         AsyncImage(
-            model = imageUrl,
+            model = ImageRequest.Builder(LocalContext.current)
+                .data(imageUrl)
+                .memoryCachePolicy(CachePolicy.ENABLED)
+                .diskCachePolicy(CachePolicy.ENABLED)
+                .networkCachePolicy(CachePolicy.ENABLED)
+                .crossfade(true)
+                .build(),
             contentDescription = null,
             modifier = modifier.fillMaxSize(),
             contentScale = ContentScale.Fit,

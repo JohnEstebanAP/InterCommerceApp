@@ -33,7 +33,10 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import coil.request.CachePolicy
+import coil.request.ImageRequest
 import com.inter_rapidisimo.intercommerceapp.R
 import com.inter_rapidisimo.intercommerceapp.domain.product.Product
 import com.inter_rapidisimo.intercommerceapp.presentation.navigation.AppRoutes
@@ -41,8 +44,7 @@ import com.inter_rapidisimo.intercommerceapp.presentation.navigation.AppRoutes
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ProductScreen(
-    navController: NavController,
-    viewModel: ProductViewModel = hiltViewModel()
+    navController: NavController, viewModel: ProductViewModel = hiltViewModel()
 ) {
 
     val products by viewModel.products.collectAsState()
@@ -61,10 +63,7 @@ fun ProductScreen(
             listState.layoutInfo.visibleItemsInfo.lastOrNull()?.index
         }.collect { lastVisibleIndex ->
 
-            if (
-                lastVisibleIndex != null &&
-                lastVisibleIndex >= products.size - 2
-            ) {
+            if (lastVisibleIndex != null && lastVisibleIndex >= products.size - 2) {
                 viewModel.loadMoreProducts()
             }
         }
@@ -78,8 +77,7 @@ fun ProductScreen(
 
                 title = {
                     Text(
-                        "Todos los productos",
-                        fontWeight = FontWeight.Bold
+                        "Todos los productos", fontWeight = FontWeight.Bold
                     )
                 },
 
@@ -87,11 +85,9 @@ fun ProductScreen(
                     IconButton(
                         onClick = {
                             navController.popBackStack()
-                        }
-                    ) {
+                        }) {
                         Icon(
-                            imageVector = Icons.Default.ArrowBack,
-                            contentDescription = "Volver"
+                            imageVector = Icons.Default.ArrowBack, contentDescription = "Volver"
                         )
                     }
                 },
@@ -125,8 +121,7 @@ fun ProductScreen(
                 error != null -> {
 
                     Text(
-                        text = error ?: "Error",
-                        modifier = Modifier.align(
+                        text = error ?: "Error", modifier = Modifier.align(
                             Alignment.Center
                         )
                     )
@@ -138,8 +133,7 @@ fun ProductScreen(
                         state = listState,
                         modifier = Modifier.fillMaxSize(),
                         contentPadding = PaddingValues(
-                            top = 20.dp,
-                            bottom = 20.dp
+                            top = 20.dp, bottom = 20.dp
                         ),
                         verticalArrangement = Arrangement.spacedBy(20.dp)
                     ) {
@@ -147,22 +141,17 @@ fun ProductScreen(
                         itemsIndexed(products) { _, product ->
 
                             ProductItem(
-                                product = product,
-                                onClick = {
+                                product = product, onClick = {
 
                                     navController.navigate(
                                         AppRoutes.ProductDetail.createRoute(
                                             product.id
                                         )
                                     )
-                                }
-                            )
+                                })
                         }
 
-                        if (
-                            isLoading &&
-                            products.isNotEmpty()
-                        ) {
+                        if (isLoading && products.isNotEmpty()) {
 
                             item {
 
@@ -186,16 +175,14 @@ fun ProductScreen(
 
 @Composable
 fun ProductItem(
-    product: Product,
-    onClick: () -> Unit
+    product: Product, onClick: () -> Unit
 ) {
 
     Card(
         modifier = Modifier
             .fillMaxWidth()
             .padding(
-                horizontal = 20.dp,
-                vertical = 4.dp
+                horizontal = 20.dp, vertical = 4.dp
             ),
 
         onClick = onClick,
@@ -223,7 +210,13 @@ fun ProductItem(
             ) {
 
                 AsyncImage(
-                    model = product.thumbnail,
+                    model =  ImageRequest.Builder(LocalContext.current)
+                        .data(product.thumbnail)
+                        .memoryCachePolicy(CachePolicy.ENABLED)
+                        .diskCachePolicy(CachePolicy.ENABLED)
+                        .networkCachePolicy(CachePolicy.ENABLED)
+                        .crossfade(true)
+                        .build(),
                     contentDescription = product.title,
 
                     contentScale = ContentScale.Fit,
@@ -231,15 +224,9 @@ fun ProductItem(
                     modifier = Modifier
                         .fillMaxSize()
                         .padding(10.dp),
-                    placeholder = painterResource(
-                        com.inter_rapidisimo.intercommerceapp.R.drawable.ic_product_placeholder_foreground
-                    ),
-                    error = painterResource(
-                        com.inter_rapidisimo.intercommerceapp.R.drawable.ic_product_placeholder_foreground
-                    ),
-                    fallback = painterResource(
-                        R.drawable.ic_product_placeholder_foreground
-                    ),
+                    placeholder = painterResource(R.drawable.ic_product_placeholder_foreground),
+                    error = painterResource(R.drawable.ic_product_placeholder_foreground),
+                    fallback = painterResource(R.drawable.ic_product_placeholder_foreground),
                 )
 
                 Surface(
@@ -260,8 +247,7 @@ fun ProductItem(
                         style = MaterialTheme.typography.labelSmall,
 
                         modifier = Modifier.padding(
-                            horizontal = 8.dp,
-                            vertical = 2.dp
+                            horizontal = 8.dp, vertical = 2.dp
                         )
                     )
                 }
@@ -319,8 +305,7 @@ fun ProductItem(
                         fontWeight = FontWeight.SemiBold,
 
                         modifier = Modifier.padding(
-                            horizontal = 10.dp,
-                            vertical = 4.dp
+                            horizontal = 10.dp, vertical = 4.dp
                         )
                     )
                 }

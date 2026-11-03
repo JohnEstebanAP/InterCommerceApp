@@ -99,6 +99,13 @@ Tareas ya completadas del proyecto
 8. se creo la pantalla de cart 
 9. ya estan los casos de uso para cart
 10. se agregaron 4 test para los casos de uso y 1 test para el view model
+11. feat: add README.MD
+12. fix(cart,skeleton): resolve cart navigation and improve skeleton UI
+13. fix(HomeScreen): resolve skeleton UI
+14. fix(CartScreen): update CartItemCard
+15. fix(HomeScreen): add navigation in HomeCategoryShortcuts and HomePromoBanner
+16. fix(AsyncImage):add icon for placeholder in AsyncImage 
+17. Scroll infinito real
 - se creo el dto de cart el entyp 
 - se creo el repository de cart
 - Patrón Repository.

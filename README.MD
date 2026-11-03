@@ -224,6 +224,18 @@ Casos probados:
 ✅ ProductViewModel
 
 ---
+## Optimización de imágenes
+
+Las imágenes son cargadas mediante Coil utilizando:
+
+- Memory Cache
+- Disk Cache
+- Network Cache
+- Crossfade Animations
+- Placeholder
+- Error Fallback
+
+Esto mejora el rendimiento y la experiencia offline.
 
 # 💡 Decisiones Técnicas
 
